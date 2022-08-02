@@ -35,11 +35,14 @@ $games = $query->fetchAll();
                 <div class="bg-red-400 text-white text-center">
                     <?= $_SESSION["error"] ?>
                 </div>
-            <?php } else {
-                echo "";
-            }
+            <?php } elseif ($_SESSION["success"]) { ?>
+                <div class="bg-red-400 text-white text-center">
+                <?= $_SESSION["success"] ?>
+                </div>
+            <?php }
             // je vide ma variable $_session["error"] pour qu'il n'affiche pas de message en creant un array vide
             $_SESSION["error"] = [];
+            $_SESSION["success"] = [];
             ?>
         </div>
         <!-- Table -->
