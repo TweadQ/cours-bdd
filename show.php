@@ -27,12 +27,12 @@ if (!empty($_GET['id']) && is_numeric($_GET['id'])) {
     // debug_array($game);
     // $game=[];
 
-    if(!$game) {
-        $_SESSION["error"]="Ce jeu est indisponible";
+    if (!$game) {
+        $_SESSION["error"] = "Ce jeu est indisponible";
         header("Location: index.php");
     }
 } else {
-    $_SESSION["error"]="URL INVALIDE";
+    $_SESSION["error"] = "URL INVALIDE";
     header("Location: index.php");
 }
 ?>
@@ -49,6 +49,7 @@ if (!empty($_GET['id']) && is_numeric($_GET['id'])) {
     <div class="">
         <p class=""><?= $game['description'] ?></p>
     </div>
+    <a href="delete.php?id=<?= $game['id'] ?>&name =<?= $game['name'] ?>" class="btn btn-error text-white">Supprimer le jeu</a>
 </div>
 <!-- end main content -->
 
