@@ -2,8 +2,22 @@
 <?php
 $title = "Accueil"; //title for current page
 include('partials/_header.php'); //include header
+include("helpers/functions.php"); // include functions
 //include PDO pour la connexion à la BDD
-require_once("helpers/pdo.php")
+require_once("helpers/pdo.php");
+
+
+// 1 - Requête pour récupérer mes jeux
+$sql = "SELECT * FROM jeux2";
+// 2 - Prépare la requête (préformatter une requête)
+$query = $pdo->prepare($sql);
+// 3 - Execute ma requête
+$query->execute();
+// 4 - On stock le résultat dans une variable
+$games = $query->fetchAll();
+// debug_array($games);
+
+
 ?>
 
 <!-- main content -->
@@ -29,8 +43,28 @@ require_once("helpers/pdo.php")
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                    if (count($games) == 0) {
+                        echo "<tr><td>Pas de jeux disponible actuellement</tr></td>";
+                    } else { ?>
+                        <?php foreach ($games as $game) : ?>
+                            <tr>
+                                <th><?= $game['id'] ?></th>
+                                <td><?= $game['name'] ?></td>
+                                <td><?= $game['genre'] ?></td>
+                                <td><?= $game['plateforms'] ?></td>
+                                <td><?= $game['price'] ?></td>
+                                <td><?= $game['PEGI'] ?></td>
+                                <td>
+                                    <a href="show.php">
+                                        <img src="img/loupe.png" alt="" class="w-6">
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    <?php } ?>
                     <!-- row 1 -->
-                    <tr>
+                    <!-- <tr>
                         <th>1</th>
                         <td>Mario</td>
                         <td>Plateforme</td>
@@ -42,7 +76,7 @@ require_once("helpers/pdo.php")
                                 <img src="img/loupe.png" alt="" class="w-6">
                             </a>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
