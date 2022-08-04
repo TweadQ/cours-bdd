@@ -29,6 +29,10 @@ $games = $query->fetchAll();
             <h1 class="text-blue-500 text-5xl uppercase font-black">App Game</h1>
             <p class="">L'app qui répertorie vos jeux</p>
         </div>
+        <!-- boutton -->
+        <div class="pt-4 text-center">
+            <a href="addGame.php" class="btn btn-primary">Ajouter un jeu</a>
+        </div>
         <div class="bg-red-400 text-white text-center">
             <?php
             if ($_SESSION["error"]) { ?>
